@@ -49,23 +49,9 @@ listen stats
   stats  auth admin:admin
 
 frontend ALL
-        bind *:80
         bind *:443 ssl crt /etc/ssl_cert/mydora.tech/mydora.tech.pem
         mode http
 
-        # Define path for lets encrypt
-        acl is_letsencrypt path_beg -i /.well-known/acme-challenge/
-
-        # Redirect all requests on port 80(http) to 443(https)
-        # We only have one exception which is letsencrypt - because letsencrypt needs to hit us on port 80 to perform its job
-        redirect scheme https code 301 if !{ ssl_fc } !is_letsencrypt
-
-        use_backend letsencrypt if is_letsencrypt
-        default_backend lb-backend
-
-backend letsencrypt
-        server letsencrypt 127.0.0.1:8888
- 
 backend lb-backend
         balance roundrobin
         server web-01 54.237.237.111:80 check
