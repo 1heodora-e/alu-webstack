@@ -39,7 +39,7 @@ defaults
 #
 ###########################################
 listen stats
-  bind *:443
+  bind *:9090
   mode  http
   maxconn  10
   stats  enable
@@ -49,8 +49,8 @@ listen stats
   stats  auth admin:admin
 
 frontend ALL
-        bind *:443
-        bind *:443 ssl crt /etc/ssl_cert/chysco.tech/chysco.tech.pem
+        bind *:80
+        bind *:443 ssl crt /etc/ssl_cert/mydora.tech/mydora.tech.pem
         mode http
 
         # Define path for lets encrypt
@@ -68,5 +68,5 @@ backend letsencrypt
  
 backend lb-backend
         balance roundrobin
-        server web-01 54.237.237.111:80 check
+        server web-01 54.172.243.208:80 check
         server web-02 54.196.244.48:80 check
