@@ -51,8 +51,10 @@ listen stats
 frontend ALL
         bind *:443 ssl crt /etc/ssl_cert/mydora.tech/mydora.tech.pem
         mode http
+        default_backend lb-backend
 
 backend lb-backend
         balance roundrobin
         server web-01 54.237.237.111:80 check
         server web-02 54.196.244.48:80 check
+
