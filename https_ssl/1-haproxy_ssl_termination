@@ -50,7 +50,7 @@ listen stats
 
 frontend ALL
         bind *:80
-        bind *:443 ssl crt /etc/ssl_cert/chysco.tech/chysco.tech.pem
+        bind *:443 ssl crt /etc/ssl_cert/mydora.tech/mydora.tech.pem
         mode http
 
         # Define path for lets encrypt
