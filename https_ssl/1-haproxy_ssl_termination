@@ -39,7 +39,7 @@ defaults
 #
 ###########################################
 listen stats
-  bind *:9090
+  bind *:443
   mode  http
   maxconn  10
   stats  enable
@@ -49,7 +49,7 @@ listen stats
   stats  auth admin:admin
 
 frontend ALL
-        bind *:80
+        bind *:443
         bind *:443 ssl crt /etc/ssl_cert/chysco.tech/chysco.tech.pem
         mode http
 
